@@ -7,7 +7,8 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: {{ .Values.namespace }}/{{ .Values.appname }}-certificate
 webhooks:
-  - clientConfig:
+  - admissionReviewVersions: ["v1beta1"] # the webhook supports v1beta1 only
+    clientConfig:
       service:
         name: {{ .Values.appname }}
         namespace: {{ .Values.namespace }}
