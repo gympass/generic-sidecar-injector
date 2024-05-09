@@ -38,6 +38,9 @@ Common labels
 app.kubernetes.io/name: {{ include "sidecarinjector.name" . }}
 helm.sh/chart: {{ include "sidecarinjector.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Values.customLabels }}
+{{ toYaml .Values.customLabels }}
+{{- end }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}

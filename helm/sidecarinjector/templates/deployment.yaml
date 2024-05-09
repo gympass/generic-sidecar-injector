@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: {{ .Values.appname }}
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "sidecarinjector.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -12,8 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.appname }}
-        app.kubernetes.io/instance: {{ .Values.appname }}
+        {{- include "sidecarinjector.labels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
