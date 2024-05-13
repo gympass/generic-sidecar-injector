@@ -2,7 +2,7 @@
 apiVersion: admissionregistration.k8s.io/v1beta1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: {{ .Values.appname }}-webhook-cfg
+  name: {{ .Values.webhookPriorityPrefix | default "0001" }}-{{ .Values.appname }}-webhook-cfg
   namespace: {{ .Values.namespace }}
   annotations:
     cert-manager.io/inject-ca-from: {{ .Values.namespace }}/{{ .Values.appname }}-certificate
