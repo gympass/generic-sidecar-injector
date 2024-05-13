@@ -15,7 +15,7 @@ spec:
     - server auth
     - client auth
   issuerRef:
-    name: ca-issuer
+    name: generic-sidecar-injector-issuer-self-signed
     kind: ClusterIssuer
 
 ---
@@ -23,8 +23,6 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: ca-issuer
-  namespace: kube-system
+  name: generic-sidecar-injector-issuer-self-signed
 spec:
-  ca: 
-    secretName: ca-key-pair
+  selfSigned: {}
