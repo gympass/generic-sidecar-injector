@@ -35,9 +35,9 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "sidecarinjector.labels" -}}
-app.kubernetes.io/name: {{ include "sidecarinjector.name" . }}
+app.kubernetes.io/name: {{ .Values.appname }}
+app.kubernetes.io/instance: {{ .Values.appname }}
 helm.sh/chart: {{ include "sidecarinjector.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Values.customLabels }}
 {{ toYaml .Values.customLabels }}
 {{- end }}
